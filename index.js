@@ -1,19 +1,21 @@
+/*
+*简单爬虫，抓取cnode官网文章题目信息
+*superagent是个http方面的库，可以发起get或post请求
+*cheerio可以理解成Node.js版的jquery，用来从网页中以css selector取数据，使用方式跟jquery一样
+*/
+
 var express = require('express');
 var superagent = require('superagent');
 var cheerio = require('cheerio');
 
 var app = express();
 
-//简单爬虫，抓取cnode官网文章题目信息
 app.get('/', function (req, res) {
     superagent.get('https://cnodejs.org/')
         .end(function (err, sres) {
             if (err) {
                 return next(err);
             }
-            // sres.text 里面存储着网页的 html 内容，将它传给 cheerio.load 之后
-            // 就可以得到一个实现了 jquery 接口的变量，我们习惯性地将它命名为 `$`
-            // 剩下就都是 jquery 的内容了
             var $ = cheerio.load(sres.text);
             var items = [];
             $('#topic_list .cell').each(function (idx, element) {
