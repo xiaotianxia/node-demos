@@ -14,17 +14,17 @@ app.all('*', function(req, res, next) {
 
 var questions={
 	data: [{
-		data:213,
-		num:444,
-		age:12
+		data: 213,
+		num: 444,
+		age: 12
 	},{
-		data:456,
-		num:678,
-		age:13
+		data: 456,
+		num: 678,
+		age: 13
 }]};
 
 //接口test/123
-app.get('/test/123',function(req,res){
+app.get('/test/123', function(req, res){
 	res.status(200);
 	var options = {
 	    method: "GET",
